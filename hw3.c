@@ -37,6 +37,7 @@ void forkChild(char *args[], int n){
 
   if(pid == 0){
     for(i = 0; i < n; i++){
+      /*
       if(strncmp(args[i], ";", 2) == 0){
         split = 1;
         char* firstArr;
@@ -54,7 +55,7 @@ void forkChild(char *args[], int n){
         execvp(secondArr[0], secondArr);
 
         break;
-      }else if(strncmp(args[i], ">", 1) == 0){
+      }else*/ if(strncmp(args[i], ">", 1) == 0){
         args[i] = (char *) 0;
         fd = open(args[i + 1], O_RDWR|O_CREAT, S_IWUSR|S_IRGRP| S_IROTH);
         dup2(fd, 1);
