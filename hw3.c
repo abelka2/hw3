@@ -36,6 +36,7 @@ void forkChild(char *args[], int n){
 
   if(pid == 0){
     for(i = 0; i < n; i++){
+      /*
       if(strncmp(args[i], ";", 2) == 0){
         char* firstArr;
         char* secondArr;
@@ -52,7 +53,7 @@ void forkChild(char *args[], int n){
         execvp(secondArr[0], secondArr);
 
         break;
-      }else if(strncmp(args[i], ">", 1) == 0){
+      }else */if(strncmp(args[i], ">", 1) == 0){
         args[i] = (char *) 0;
         fd = open(args[i + 1], O_RDWR|O_CREAT, S_IWUSR|S_IRGRP| S_IROTH);
         dup2(fd, 1);
@@ -69,10 +70,10 @@ void forkChild(char *args[], int n){
       }
 
     }
-
-    
     exit(0);
-  }else{
+
+  }
+  else{
     wait(&status);
     printf("pid:%d", getpid());
     printf(" status:%d\n", status);
@@ -109,7 +110,7 @@ int main(int argc, char **argv) {
     args[i] = (char *)0;
 
     forkChild(args, i);
-    freeStuff(args, i);
+    //freeStuff(args, i);
 
   }
   return 0;
