@@ -75,10 +75,10 @@ void forkChild(char *args[], int n){
 
   }
   else{
-    wait(&status);
+    //wait(&status);
     printf("pid:%d", getpid());
     printf(" status:%d\n", WEXITSTATUS(status));
-    //wait(&status);
+    wait(&status);
     //printf("Exit: %d\n", status);
   }
 }
