@@ -58,18 +58,19 @@ void forkChild(char *args[], int n){
         fd = open(args[i + 1], O_RDWR|O_CREAT, S_IWUSR|S_IRGRP| S_IROTH);
         dup2(fd, 1);
         close(fd);
-        execvp(args[0], args);
+        //execvp(args[0], args);
         break;
       }else if(strncmp(args[i], "<", 1) == 0){
         args[i] = (char *) 0;
         fd = open(args[i+1], O_RDONLY);
         dup2(fd, 0);
         close(fd);
-        execvp(args[0], args);
+        //execvp(args[0], args);
         break;
       }
 
     }
+    execvp(args[0], args);
     exit(0);
 
   }
