@@ -33,11 +33,12 @@ void forkChild(char *args[], int n){
   int i;
   char *word;
   int pid = fork();
+  int split = 0;
 
   if(pid == 0){
     for(i = 0; i < n; i++){
-      /*
       if(strncmp(args[i], ";", 2) == 0){
+        split = 1;
         char* firstArr;
         char* secondArr;
         int a = i;
@@ -53,24 +54,23 @@ void forkChild(char *args[], int n){
         execvp(secondArr[0], secondArr);
 
         break;
-      }else */if(strncmp(args[i], ">", 1) == 0){
+      }else if(strncmp(args[i], ">", 1) == 0){
         args[i] = (char *) 0;
         fd = open(args[i + 1], O_RDWR|O_CREAT, S_IWUSR|S_IRGRP| S_IROTH);
         dup2(fd, 1);
         close(fd);
-        //execvp(args[0], args);
         break;
       }else if(strncmp(args[i], "<", 1) == 0){
         args[i] = (char *) 0;
         fd = open(args[i+1], O_RDONLY);
         dup2(fd, 0);
         close(fd);
-        //execvp(args[0], args);
         break;
       }
 
     }
-    execvp(args[0], args);
+    if (split == 0)
+      execvp(args[0], args);
     exit(0);
 
   }
