@@ -53,7 +53,6 @@ void forkChild(char *args[], int n){
         }
         execvp(firstArr[0], firstArr);
         execvp(secondArr[0], secondArr);
-
         break;
       }else if(strncmp(args[i], ">", 1) == 0){
         args[i] = (char *) 0;
