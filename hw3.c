@@ -75,7 +75,7 @@ void forkChild(char *args[], int n){
   }else{
     wait(&status);
     printf("pid:%d", getpid());
-    printf(" status:%d\n", &status);
+    printf(" status:%d\n", status);
     //wait(&status);
     //printf("Exit: %d\n", status);
   }
