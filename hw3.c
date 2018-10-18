@@ -7,14 +7,6 @@
 #include <string.h>
 #include <unistd.h>
 
-void freeStuff(char **arr, int n){
-  int i;
-  for(i = 0; i < n; i++){
-    free(arr[i]);
-  }
-  free(arr);
-}
-
 void sigtstp_handler(int sig){
   char msg[] = "caught sigstp\nCS361 >";
   write(1, msg, sizeof(msg));
@@ -78,7 +70,6 @@ void forkChild(char *args[], int n){
     wait(&status);
     printf("pid:%d", pid);
     printf(" status:%d\n", WEXITSTATUS(status));
-    //printf("Exit: %d\n", status);
   }
 }
 
@@ -110,8 +101,6 @@ int main(int argc, char **argv) {
     args[i] = (char *)0;
 
     forkChild(args, i);
-    //freeStuff(args, i);
-
   }
   return 0;
 }
