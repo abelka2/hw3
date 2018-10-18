@@ -39,7 +39,7 @@ void forkChild(char *args[], int n){
           firstArr[a] = args[a];
         }
         int b = 0;
-        for (a=i+1; args[a] == NULL; a++){
+        for (a=i+1; args[a] != NULL; a++){
           secondArr[b] = args[a];
           b++;
         }
