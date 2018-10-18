@@ -47,12 +47,14 @@ void forkChild(char *args[], int n){
         execvp(secondArr[0], secondArr);
         break;
       }else if(strncmp(args[i], ">", 1) == 0){
+        split = 0;
         args[i] = (char *) 0;
         fd = open(args[i + 1], O_RDWR|O_CREAT, S_IWUSR|S_IRGRP| S_IROTH);
         dup2(fd, 1);
         close(fd);
         break;
       }else if(strncmp(args[i], "<", 1) == 0){
+        split = 0;
         args[i] = (char *) 0;
         fd = open(args[i+1], O_RDONLY);
         dup2(fd, 0);
